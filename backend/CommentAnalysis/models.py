@@ -4,6 +4,7 @@ from django.db import models
 
 class Analysis (models.Model):
     Title = models.CharField(max_length=200)
+    video_id = models.CharField(max_length=100)
     url = models.CharField(max_length=1000)
     description = models.TextField()
 
