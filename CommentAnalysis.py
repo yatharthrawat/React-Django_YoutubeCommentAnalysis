@@ -3,6 +3,7 @@ from nltk.classify import NaiveBayesClassifier
 from nltk.corpus import twitter_samples
 from nltk.tag import pos_tag_sents
 from nltk.corpus import movie_reviews
+import pickle
 
 def CreateFeautureSet_movie(words):
     temp = []
@@ -42,7 +43,7 @@ for id in fileid_neg:
 train_set = positive + negative
 
 classifier = NaiveBayesClassifier.train(train_set)
+# Save model to disk
+filename = 'Classifier.sav'
+pickle.dump(classifier,open(filename,'wb'))
 
-example = "John Oliver is a brilliant man and his staff are also brilliant. They manage to both enlighten and entertain, while leaving the viewer (or some anyway) with either a sense of existential dread or a burning desire to take action to right a dreadful wrong. Bravo to them all!﻿"
-
-print(classifier.classify(CreateFeautureSet(example)))
