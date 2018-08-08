@@ -1,4 +1,5 @@
 import os
+import pickle
 
 import google.oauth2.credentials
 
@@ -30,19 +31,25 @@ def get_comments(youtube, video_id):
       textFormat="plainText"
     ).execute()
 
+    filename= 'Classifier.sav'
+    Classifier = pickle.load(open(filename,'rb'))
+
     for item in results["items"]:
       comment = item["snippet"]["topLevelComment"]
       author = comment["snippet"]["authorDisplayName"]
       text = comment["snippet"]["textDisplay"]
-      print ("Comment by %s: %s" % (author, text))
+      print(Classifier.classify(text))
+
 
     return results["items"]
 
-youtube = get_authenticated_service()
-try:
-    video_id="ET_b78GSBUs"
-    get_comments(youtube,video_id)
-except HttpError as e:
-    print ("An HTTP error %d occurred:\n%s" % (e.resp.status, e.content))
-else:
-    print ("Inserted, listed and updated top-level comments.")
+def start(video_id):
+    youtube = get_authenticated_service()
+    try:
+        get_comments(youtube,video_id)
+    except HttpError as e:
+        print ("An HTTP error %d occurred:\n%s" % (e.resp.status, e.content))
+    else:
+        print ("Inserted, listed and updated top-level comments.")
+
+start("1ZAPwfrtAFY")
