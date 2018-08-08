@@ -3,6 +3,9 @@ from rest_framework.response import Response
 # Create your views here.
 
 from .serializers import AnalysisSerializer
+from .AccessYoutubeComment import start
+from .AccessYoutubeComment import data
+
 
 class CommentAnalysis(APIView):
 
@@ -10,7 +13,7 @@ class CommentAnalysis(APIView):
         """
         Return if overall comment is negative or positive
         """
-        temp="pos "+video_id
-
-        return Response(temp)
+        temp = start(video_id)
+        serializer = AnalysisSerializer(temp,many=True)
+        return Response(serializer.data)
 

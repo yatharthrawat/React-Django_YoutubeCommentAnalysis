@@ -20,6 +20,14 @@ SCOPES = ['https://www.googleapis.com/auth/youtube.force-ssl']
 API_SERVICE_NAME = 'youtube'
 API_VERSION = 'v3'
 
+class data(object):  
+    def __init__(self,author,text,sentiment):
+        self.author=author
+        self.text=text
+        self.sentiment=sentiment
+    
+
+
 def get_authenticated_service():
     flow = InstalledAppFlow.from_client_secrets_file(CLIENT_SECRETS_FILE, SCOPES)
     credentials = flow.run_console()
@@ -43,23 +51,24 @@ def get_comments(youtube, video_id):
 
     filename= 'Classifier.sav'
     Classifier = pickle.load(open(filename,'rb'))
+    
+    result=[]
 
     for item in results["items"]:
       comment = item["snippet"]["topLevelComment"]
       author = comment["snippet"]["authorDisplayName"]
       text = comment["snippet"]["textDisplay"]
-      print(Classifier.classify(CreateFeautureSet(text)))
+      result.append(data(author=author,text=text,sentiment=(Classifier.classify(CreateFeautureSet(text)))))
 
 
-    return results["items"]
+    return result
 
 def start(video_id):
     youtube = get_authenticated_service()
     try:
-        get_comments(youtube,video_id)
+        temp = get_comments(youtube,video_id)
+        return temp
     except HttpError as e:
         print ("An HTTP error %d occurred:\n%s" % (e.resp.status, e.content))
-    else:
-        print ("Inserted, listed and updated top-level comments.")
 
-start("1ZAPwfrtAFY")
+
