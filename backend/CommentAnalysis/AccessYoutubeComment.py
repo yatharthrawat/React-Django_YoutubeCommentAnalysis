@@ -1,6 +1,8 @@
 import os
 import pickle
 
+import nltk
+
 import google.oauth2.credentials
 
 from googleapiclient.discovery import build
@@ -23,6 +25,14 @@ def get_authenticated_service():
     credentials = flow.run_console()
     return build(API_SERVICE_NAME, API_VERSION, credentials = credentials)
 
+def CreateFeautureSet(line):
+    temp=[]
+    for word in nltk.tokenize.word_tokenize(line):
+        if word.isalpha():
+            temp.append(word)
+
+    return({word: True for word in temp})
+
 # Call the API's commentThreads.list method to list the existing comments.
 def get_comments(youtube, video_id):
     results = youtube.commentThreads().list(
@@ -38,7 +48,7 @@ def get_comments(youtube, video_id):
       comment = item["snippet"]["topLevelComment"]
       author = comment["snippet"]["authorDisplayName"]
       text = comment["snippet"]["textDisplay"]
-      print(Classifier.classify(text))
+      print(Classifier.classify(CreateFeautureSet(text)))
 
 
     return results["items"]
