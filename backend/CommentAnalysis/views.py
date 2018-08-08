@@ -1,15 +1,16 @@
-from rest_framework import generics
+from rest_framework.views import APIView
+from rest_framework.response import Response
 # Create your views here.
 
-from .models import Analysis
 from .serializers import AnalysisSerializer
 
-class CommentAnalysis(generics.ListCreateAPIView):
-    queryset = Analysis.objects.all()
-    serializer_class = AnalysisSerializer
+class CommentAnalysis(APIView):
 
+    def get(self,request,video_id):
+        """
+        Return if overall comment is negative or positive
+        """
+        temp="pos "+video_id
 
-class Analysis(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Analysis.objects.all()
-    serializer_class = AnalysisSerializer
+        return Response(temp)
 
