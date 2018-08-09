@@ -3,3 +3,4 @@ backend/CommentAnalysis/migrations/
 backend/Comment_API/__pycache__/
 .DS_STORE
 *.json
+.idea

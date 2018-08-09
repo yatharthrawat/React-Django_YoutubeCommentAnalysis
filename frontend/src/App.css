@@ -2,27 +2,68 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+body {
+  font-family: 'Open Sans', sans-serif;
+  padding-top: 10px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+h1 {
+    margin-left: 450px;
+    padding-bottom: 50px;
 }
 
-.App-title {
-  font-size: 1.5em;
+.search {
+    font-size: 20px;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
 }
 
-.App-intro {
-  font-size: large;
+.search_button{
+    font-size: 16px;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    height: 25px;
+    width: 50px;
+    margin-left: 25px;
+    visibility: hidden;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.search_text{
+    font-size: 20px;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+.form_search{
+    margin-left: 200px;
+    margin-right: 100px;
+
+}
+.td_pos{
+    color: #ffffff;
+    background-color: #2eb82e;
+}
+.td_neg{
+    color: #ffffff;
+    background-color: #e60000;
+
+}
+.comments{
+    margin-top: 50px;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 50px;
+    height: 350px;
+    width: 850px;
+    overflow-y: scroll;
+}
+
+td{
+    border: 1px solid #000000;
+    padding: 15px;
+}
+
+table{
+    border: 2px solid #000000;
+    border-collapse: collapse;
+}
+
+
