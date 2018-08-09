@@ -2,5 +2,5 @@ backend/CommentAnalysis/__pycache__/
 backend/CommentAnalysis/migrations/
 backend/Comment_API/__pycache__/
 .DS_STORE
-*.json
+backend/client_secret.json
 .idea
