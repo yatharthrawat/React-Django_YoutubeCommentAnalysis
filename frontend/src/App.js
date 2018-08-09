@@ -53,6 +53,7 @@ class App extends Component {
     }
 
     render() {
+        document.title = "Youtube Comment Analysis";
         let pos=0;
         let neg=0;
         let elements=[];
