@@ -3,7 +3,7 @@ Web Application that classifies youtube comments as positive and negative with r
 
 Classification is done by the NaiveBayes Classifier in the Natural Language ToolKit (NLTK).<br/>
 Currently classification is erroneous as the classifier uses the bag of words model and therefore doesn't account complexity in natural language.<br/>
-With time as I learn more about Machine Learning and Natural Language Processing, I hope to improve this classifier and make it reach as close as human accuracy as possible<br/>
+With time as I learn more about Machine Learning and Natural Language Processing, I hope to improve this classifier and make it's accuracy as close as possible to a human.<br/>
 
 Classifier is saved as Classifier.sav using pickle to prevent repetitive training of model.<br/>
 Model is currently trained on twitter_samples and movie_reviews corpus found in NLTK<br/>
