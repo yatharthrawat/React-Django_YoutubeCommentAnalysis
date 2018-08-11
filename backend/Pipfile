@@ -8,6 +8,9 @@ django = "*"
 djangorestframework = "*"
 "oauth2client" = "*"
 django-cors-headers = "*"
+"httplib2" = "*"
+google-api-python-client = "*"
+requests = "*"
 
 [dev-packages]
 

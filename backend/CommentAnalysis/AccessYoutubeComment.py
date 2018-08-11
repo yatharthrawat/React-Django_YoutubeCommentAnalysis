@@ -1,10 +1,7 @@
 import os
 import pickle
-
 import nltk
-
 import google.oauth2.credentials
-
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -29,10 +26,19 @@ class data(object):
 
 
 def get_authenticated_service():
-    flow = InstalledAppFlow.from_client_secrets_file(CLIENT_SECRETS_FILE, SCOPES)
-    credentials = flow.run_console()
-    return build(API_SERVICE_NAME, API_VERSION, credentials = credentials)
-
+	filename='credentials.sav'
+	flow = InstalledAppFlow.from_client_secrets_file(CLIENT_SECRETS_FILE, SCOPES)
+	
+	try:
+		credentials = pickle.load(open(filename,'rb'))
+		youtube=build(API_SERVICE_NAME, API_VERSION, credentials = credentials)
+		return youtube
+	except FileNotFoundError:
+		credentials = flow.run_console()
+		pickle.dump(credentials,open(filename,'wb'))
+		youtube=build(API_SERVICE_NAME, API_VERSION, credentials = credentials)
+		return youtube
+		
 def CreateFeautureSet(line):
     temp=[]
     for word in nltk.tokenize.word_tokenize(line):
