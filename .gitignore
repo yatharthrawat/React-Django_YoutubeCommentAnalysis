@@ -4,3 +4,4 @@ backend/Comment_API/__pycache__/
 .DS_STORE
 backend/client_secret.json
 .idea
+backend/credentials.sav
